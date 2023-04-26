@@ -1,0 +1,16 @@
+{
+  "env": {
+    "es2022": true
+  },
+  // この上2行は必要なのかな？
+  "plugins": ["react", "@emotion"],
+  "extends": ["plugin:react/recommended"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 13
+  },
+  "rules": {
+    "react/prop-types": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }]
+  }
+}
