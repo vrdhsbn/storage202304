@@ -13,8 +13,6 @@ export default function ItemList() {
     toast.success(`削除しました。`)
   }
 
-  console.log(items)
-
   if (items.length === 0) {
     return <p css={message}>データがありません</p>
   }

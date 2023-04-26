@@ -6,15 +6,17 @@ import ContactList from './ContactList'
 import Webstorage from './Webstorage'
 
 const App = () => {
+  const homeUrl = process.env.PUBLIC_URL
+
   return (
     <main className="main">
       <BrowserRouter>
-        <Link to="/storage">Web Storageのデモ</Link>
+        <Link to={homeUrl + '/storage'}>Web Storageのデモ</Link>
         <br />
-        <Link to="/contact">IndexedDBのデモ</Link>
+        <Link to={homeUrl + '/contact'}>IndexedDBのデモ</Link>
         <Routes>
-          <Route path="contact" element={<ContactList />}></Route>
-          <Route path="storage" element={<Webstorage />}></Route>
+          <Route path={homeUrl + '/contact'} element={<ContactList />}></Route>
+          <Route path={homeUrl + '/storage'} element={<Webstorage />}></Route>
         </Routes>
       </BrowserRouter>
     </main>
