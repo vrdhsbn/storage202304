@@ -9,6 +9,9 @@ function ContactList() {
   return (
     <>
       <h1 className="headings">連絡先アプリ</h1>
+      <p className="text">
+        登録した内容はブラウザのIndexedDBに保存され、タブやブラウザを閉じてもデータは保持されます。
+      </p>
 
       <div className="form">
         <h2>連絡先を登録する</h2>

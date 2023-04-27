@@ -7,8 +7,8 @@ function Webstorage() {
   const session = sessionStorage
   const data = {
     id: 0,
-    name: 'komazawa',
-    age: 40,
+    message:
+      'これはセッションストレージに保存されたテキストです。タブやブラウザを閉じるとこの内容は削除されます。',
   }
   const defaultMemoContent = local.getItem('memo') ? local.getItem('memo') : ''
   const [content, setContent] = useState(null)
@@ -32,26 +32,11 @@ function Webstorage() {
     setMemoContent(e.target.value)
   }
 
-  // メモをダウンロードする
-  // memoのstateからBlobを作成し、URLを発行して
-  // それをダウンロードするaタグを作ってclickイベントをシミュレートする。
-  // その後aタグとURLは破棄する。
-  function downloadMemo() {
-    const blob = new Blob([memoContent], { type: 'text/plain' })
-    const url = URL.createObjectURL(blob)
-    console.log(url)
-    const a = document.createElement('a')
-    document.body.appendChild(a)
-    a.download = 'memo.txt'
-    a.href = url
-    a.click()
-    a.remove()
-    URL.revokeObjectURL(url)
-  }
-
   return (
     <>
       <h1 className="headings">Web Storageのデモ</h1>
+
+      <h2 className="headings">セッションストレージ</h2>
       <div className="button-container">
         <button onClick={setStorage}>セッションストレージをセットする</button>
         <button onClick={showSessionStorage}>
@@ -61,7 +46,10 @@ function Webstorage() {
 
       {content && <p className="text">{content}</p>}
 
-      <h2 className="headings">メモ帳</h2>
+      <h2 className="headings">ローカルストレージ</h2>
+      <p className="text">
+        テキストエリアに入力した内容はローカルストレージに保存されます。タブやブラウザを閉じてもデータは保持されます。
+      </p>
       <textarea
         onChange={(e) => handleChange(e)}
         value={memoContent}
@@ -69,9 +57,6 @@ function Webstorage() {
         rows={10}
         className="textarea"
       />
-      <button onClick={downloadMemo}>
-        メモの内容をtxtファイルでダウンロードする
-      </button>
     </>
   )
 }
